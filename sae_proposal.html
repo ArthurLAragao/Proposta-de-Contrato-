@@ -1,1107 +1,1043 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SAE — Proposta de Contrato</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contrato de Prestação de Serviços — S.A.E Strategies</title>
 
   <style>
     /* =========================================================
-       SAE — PROPOSTA/CONTRATO (Premium)
-       Ajuste a paleta aqui (mantém o layout inteiro consistente)
+       SAE — CONTRATO (PESSOA FÍSICA) • PAPEL BRANCO • HEADER SAE
+       - Papel branco (mais formal e jurídico)
+       - Header com identidade (teal/cyan)
+       - Conteúdo completo + dados preenchidos (cliente + prestador PF)
+       - Pronto para imprimir/PDF (A4)
     ========================================================== */
+
     :root{
-      /* Paleta (troque para sua paleta atual) */
-      --bg: #0B1220;            /* fundo escuro (capa) */
-      --paper: #FFFFFF;         /* papel */
-      --ink: #0E1726;           /* texto */
-      --muted: #5B677A;         /* texto secundário */
-      --line: #E6EAF1;          /* linhas/bordas */
-      --soft: #F6F8FC;          /* cards suaves */
-      --primary: #1E3A8A;       /* cor principal (azul) */
-      --primary-2: #0F2A66;     /* variação */
-      --accent: #C9A227;        /* destaque (dourado premium) */
-      --accent-2: #E7D28A;      /* variação */
-      --good: #12805C;
-      --warn: #B85C00;
-      --bad: #B42318;
+      --bg: #0b1220;        /* fundo da página (tela) */
+      --paper: #ffffff;     /* papel branco */
+      --ink: #0f172a;       /* texto */
+      --muted: #475569;     /* texto secundário */
+      --line: #e2e8f0;      /* linhas */
+      --soft: #f8fafc;
 
-      /* Tipografia */
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      /* Identidade SAE (mantém sua paleta teal/cyan) */
+      --primary: #14b8a6;
+      --primary-dark: #0f766e;
+      --cyan: #22d3ee;
 
-      /* Layout */
-      --radius: 18px;
-      --radius-sm: 12px;
-      --shadow: 0 18px 50px rgba(2, 6, 23, .10);
-      --shadow-2: 0 10px 30px rgba(2, 6, 23, .10);
-      --maxw: 980px;
+      --radius: 14px;
+      --shadow: 0 18px 45px rgba(2,6,23,.18);
+
+      --maxw: 210mm;
+      --pad: 42px;
+      --pad-sm: 22px;
+
+      --font: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
     }
 
-    *{ box-sizing: border-box; }
-    html, body { height: 100%; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
     body{
-      margin: 0;
       font-family: var(--font);
+      background: radial-gradient(900px 500px at 20% 10%, rgba(34,211,238,.10), transparent 55%),
+                  radial-gradient(900px 500px at 80% 0%, rgba(20,184,166,.10), transparent 60%),
+                  var(--bg);
       color: var(--ink);
-      background: #EEF2F8;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    a{ color: inherit; }
-
-    /* =========================
-       Page wrapper (visual)
-    ========================= */
-    .app{
-      display: grid;
-      gap: 22px;
-      padding: 22px;
+      line-height: 1.7;
+      padding: 24px;
     }
 
-    /* =========================
-       "Paper" container
-    ========================= */
-    .doc{
-      width: 100%;
+    .container{
       max-width: var(--maxw);
       margin: 0 auto;
       background: var(--paper);
       border: 1px solid var(--line);
-      border-radius: 22px;
+      border-radius: 18px;
       box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    /* =========================
-       Top ribbon (premium)
-    ========================= */
-    .ribbon{
-      position: relative;
-      height: 12px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+    /* ================= HEADER ================= */
+    .top-accent{
+      height: 10px;
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary), var(--cyan));
     }
 
-    /* =========================
-       Cover (capa)
-    ========================= */
-    .cover{
+    .header{
+      background: linear-gradient(135deg, #071313 0%, #0b2b29 40%, #0f766e 100%);
+      color: #ffffff;
+      padding: 28px var(--pad) 22px;
+      border-bottom: 2px solid var(--primary);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
       position: relative;
-      padding: 44px 42px 38px;
-      background: radial-gradient(900px 400px at 15% 20%, rgba(201,162,39,.20), transparent 60%),
-                  radial-gradient(800px 360px at 80% 30%, rgba(30,58,138,.22), transparent 60%),
-                  linear-gradient(180deg, #0B1220 0%, #0A1428 55%, #0B1220 100%);
-      color: #fff;
     }
-    .cover::after{
+    .header::after{
       content:"";
-      position:absolute;
-      inset: 0;
+      position:absolute; inset:0;
       background:
-        linear-gradient(120deg, rgba(201,162,39,.22), transparent 35%),
-        linear-gradient(240deg, rgba(30,58,138,.30), transparent 40%);
+        radial-gradient(900px 360px at 15% 20%, rgba(34,211,238,.18), transparent 60%),
+        radial-gradient(900px 360px at 85% 30%, rgba(20,184,166,.20), transparent 60%),
+        linear-gradient(120deg, rgba(0,255,221,.12), transparent 35%);
       pointer-events:none;
       opacity: .9;
     }
-    .cover > *{ position: relative; z-index: 1; }
+    .header > *{ position:relative; z-index:1; }
 
-    .cover-top{
+    .header-top{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap: 18px;
+      gap: 16px;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap: 14px;
+      min-width: 0;
     }
-    .logo{
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,0)),
-        linear-gradient(135deg, var(--primary), var(--accent));
-      box-shadow: 0 18px 40px rgba(0,0,0,.28);
+
+    .logo-wrap{
+      width: 74px;
+      height: 74px;
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(0,255,221,.55);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,0)),
+                  linear-gradient(135deg, var(--primary), var(--cyan));
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
       display:grid;
       place-items:center;
-      font-weight: 800;
-      letter-spacing: .5px;
+      flex: 0 0 auto;
     }
+    .logo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+
     .brand-meta{
       display:flex;
       flex-direction:column;
       gap: 2px;
+      min-width: 0;
     }
     .brand-name{
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: .2px;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: .6px;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
     .brand-tag{
-      font-size: 12px;
-      color: rgba(255,255,255,.78);
+      font-size: 12.5px;
+      color: rgba(255,255,255,.82);
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
     }
 
-    .doc-meta{
-      text-align:right;
+    .meta-pills{
       display:flex;
       flex-direction:column;
-      gap: 6px;
+      gap: 8px;
+      align-items:flex-end;
     }
     .pill{
       display:inline-flex;
       align-items:center;
-      justify-content:center;
-      gap: 8px;
+      gap: 10px;
       padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(17,24,39,.30);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       font-size: 12px;
       color: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       white-space: nowrap;
     }
-    .pill b{ font-weight: 800; color: #fff; }
+    .pill b{ color:#fff; font-weight:900; }
 
-    .cover-title{
-      margin-top: 34px;
+    .header-title{
+      margin-top: 16px;
       display:flex;
       flex-direction:column;
-      gap: 10px;
+      gap: 8px;
     }
-    .cover-title h1{
-      margin: 0;
-      font-size: 34px;
-      line-height: 1.1;
-      letter-spacing: -0.4px;
+    .header-title h1{
+      margin:0;
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: .2px;
     }
-    .cover-title p{
-      margin: 0;
-      max-width: 720px;
-      color: rgba(255,255,255,.82);
+    .header-title p{
+      margin:0;
+      max-width: 860px;
+      color: rgba(255,255,255,.85);
+      font-size: 13.5px;
       line-height: 1.55;
-      font-size: 14px;
     }
 
-    .cover-cards{
-      margin-top: 26px;
+    .header-bottom{
+      margin-top: 16px;
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
     }
-    .cover-card{
+    .info-chip{
       border-radius: 16px;
-      padding: 14px 14px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      padding: 12px 14px;
+      background: rgba(17,24,39,.28);
+      border: 1px solid rgba(255,255,255,.16);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
       display:flex;
       flex-direction:column;
-      gap: 6px;
-      min-height: 86px;
+      gap: 4px;
+      min-height: 64px;
     }
-    .cover-card .k{
+    .info-chip .k{
       font-size: 11px;
-      color: rgba(255,255,255,.70);
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
     }
-    .cover-card .v{
-      font-weight: 750;
-      font-size: 14px;
+    .info-chip .v{
+      font-size: 13px;
+      font-weight: 800;
       color: rgba(255,255,255,.95);
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      line-height: 1.35;
     }
-    .cover-card .s{
-      font-size: 12px;
-      color: rgba(255,255,255,.75);
-      line-height: 1.45;
+    .mono{ font-family: var(--mono); }
+
+    /* ================= CONTENT ================= */
+    main{
+      padding: 34px var(--pad) 44px;
     }
 
-    .cover-footer{
-      margin-top: 24px;
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 18px;
-      color: rgba(255,255,255,.78);
-      font-size: 12px;
+    .toc{
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 16px;
+      margin-bottom: 18px;
     }
-    .fine{
-      max-width: 620px;
-      line-height: 1.5;
+    .toc h2{
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      color: #0f172a;
     }
-
-    /* =========================
-       Content
-    ========================= */
-    .content{
-      padding: 34px 42px 44px;
-      display:flex;
-      flex-direction:column;
-      gap: 22px;
+    .toc ol{
+      margin-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .section{
-      padding: 18px 18px;
+      margin-top: 18px;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: 16px;
+      overflow:hidden;
       background: #fff;
-      box-shadow: 0 1px 0 rgba(2,6,23,.03);
     }
-    .section.soft{
-      background: var(--soft);
-      box-shadow: var(--shadow-2);
-    }
-    .section-header{
+
+    .section-head{
+      padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(20,184,166,.08), rgba(34,211,238,.04));
+      border-bottom: 1px solid var(--line);
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 10px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
-    .section-header h2{
-      margin: 0;
-      font-size: 16px;
-      letter-spacing: -0.2px;
+
+    .section-title{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 900;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: .2px;
     }
-    .section-header .hint{
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--cyan));
+      box-shadow: 0 10px 22px rgba(20,184,166,.20);
+      border: 1px solid rgba(20,184,166,.25);
+      flex: 0 0 auto;
+    }
+
+    .section-hint{
       font-size: 12px;
       color: var(--muted);
       text-align:right;
+      max-width: 320px;
     }
-    .hr{
-      height: 1px;
-      background: var(--line);
-      margin: 12px 0 14px;
-    }
-    .lead{
-      margin: 0;
-      line-height: 1.6;
-      color: #1A2740;
+
+    .section-body{
+      padding: 16px 16px;
+      color: #0f172a;
       font-size: 13.5px;
     }
 
-    /* =========================
-       Grid blocks
-    ========================= */
-    .grid{
+    .p{ margin-bottom: 10px; color:#0f172a; }
+    .small{ font-size: 12.5px; color: var(--muted); }
+    .b{ font-weight: 800; }
+
+    .grid-2{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
+      margin-top: 10px;
     }
+
     .card{
       border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-      background: #fff;
-    }
-    .card .title{
-      font-size: 12px;
-      color: var(--muted);
-      margin: 0 0 6px;
-    }
-    .card .value{
-      margin: 0;
-      font-size: 13.5px;
-      font-weight: 650;
-      color: var(--ink);
-      line-height: 1.5;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(30,58,138,.22);
-      background: rgba(30,58,138,.06);
-      color: var(--primary-2);
-      font-size: 12px;
-      font-weight: 650;
-    }
-    .badge .dot{
-      width: 8px; height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-    }
-
-    /* =========================
-       Lists
-    ========================= */
-    ul.clean{
-      margin: 10px 0 0;
-      padding: 0;
-      list-style: none;
-      display:flex;
-      flex-direction:column;
-      gap: 8px;
-    }
-    .li{
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      padding: 10px 12px;
-      background: #fff;
-      border: 1px solid var(--line);
       border-radius: 14px;
+      padding: 12px;
+      background: var(--soft);
     }
-    .li .icon{
-      width: 26px;
-      height: 26px;
-      border-radius: 10px;
-      background: rgba(201,162,39,.12);
-      border: 1px solid rgba(201,162,39,.24);
-      display:grid;
-      place-items:center;
-      color: #8A6E12;
-      font-weight: 900;
-      font-size: 12px;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-    .li .text{
-      display:flex;
-      flex-direction:column;
-      gap: 2px;
-    }
-    .li .text b{
-      font-size: 13px;
-    }
-    .li .text span{
-      font-size: 12.5px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* =========================
-       Tables
-    ========================= */
-    table{
-      width:100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      overflow:hidden;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: #fff;
-    }
-    thead th{
-      background: linear-gradient(180deg, rgba(30,58,138,.06), rgba(30,58,138,.03));
-      color: #22314F;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .2px;
+    .card .k{
+      font-size: 11.5px;
       text-transform: uppercase;
-      padding: 12px 12px;
-      border-bottom: 1px solid var(--line);
+      letter-spacing: .2px;
+      color: var(--muted);
+      margin-bottom: 6px;
     }
-    tbody td{
-      padding: 12px 12px;
-      font-size: 13px;
-      color: #15223B;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-      line-height: 1.45;
-    }
-    tbody tr:last-child td{ border-bottom: none; }
-    .money{ font-family: var(--mono); font-weight: 700; }
-    .right{ text-align:right; }
-    .muted{ color: var(--muted); }
-
-    /* =========================
-       Callouts
-    ========================= */
-    .callout{
-      border-radius: 16px;
-      padding: 14px;
-      border: 1px solid rgba(30,58,138,.20);
-      background: linear-gradient(180deg, rgba(30,58,138,.06), rgba(201,162,39,.06));
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-    }
-    .callout h3{
-      margin: 0;
-      font-size: 13px;
-      letter-spacing: -0.1px;
-    }
-    .callout p{
-      margin: 0;
-      font-size: 12.8px;
-      color: #22314F;
+    .card .v{
+      font-size: 13.5px;
+      color: #0f172a;
       line-height: 1.6;
     }
 
-    /* =========================
-       Signature
-    ========================= */
-    .sign-grid{
+    ul.clean{
+      margin: 10px 0 12px;
+      padding-left: 18px;
+      color: #0f172a;
+    }
+    ul.clean li{ margin-bottom: 6px; }
+
+    table{
+      width:100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 12.8px;
+    }
+    th, td{
+      border: 1px solid var(--line);
+      padding: 10px;
+      text-align:left;
+      vertical-align: top;
+    }
+    th{
+      background: #0b1220;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: .2px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .signatures{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
       margin-top: 12px;
     }
-    .sign{
+    .sign-box{
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 14px;
       background: #fff;
-      min-height: 126px;
+      min-height: 120px;
       display:flex;
       flex-direction:column;
       justify-content:space-between;
       gap: 10px;
     }
-    .sign .line{
-      height: 1px;
-      background: var(--line);
-      margin-top: 24px;
+    .sign-line{
+      border-top: 2px solid #0f172a;
+      padding-top: 10px;
+      font-size: 12.8px;
+      color: #0f172a;
+      line-height: 1.7;
     }
-    .sign .meta{
-      display:flex;
-      flex-direction:column;
-      gap: 2px;
-      font-size: 12.5px;
-      color: var(--muted);
-    }
-    .sign .meta b{ color: var(--ink); }
 
-    /* =========================
-       Footer
-    ========================= */
     .footer{
-      margin-top: 6px;
-      font-size: 11.5px;
+      border-top: 1px solid var(--line);
+      padding: 16px 18px;
+      text-align:center;
+      font-size: 12px;
       color: var(--muted);
-      display:flex;
-      justify-content:space-between;
-      gap: 12px;
-      border-top: 1px dashed var(--line);
-      padding-top: 12px;
+      background: #fff;
     }
 
-    /* =========================
-       Print (PDF)
-    ========================= */
-    @page{
-      size: A4;
-      margin: 12mm;
-    }
+    /* ================= PRINT ================= */
+    @page { size: A4; margin: 12mm; }
     @media print{
-      body{ background: #fff; }
-      .app{ padding: 0; }
-      .doc{
-        max-width: none;
-        margin: 0;
+      body{
+        background:#fff !important;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .container{
         border: none;
         border-radius: 0;
         box-shadow: none;
       }
-      .cover{
-        border-radius: 0;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .ribbon{
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-      .section.soft{
-        box-shadow: none;
-      }
-      a{ text-decoration: none; }
     }
 
-    /* =========================
-       Responsive (view web)
-    ========================= */
-    @media (max-width: 860px){
-      .content, .cover{ padding: 26px 18px; }
-      .cover-cards{ grid-template-columns: 1fr; }
-      .grid, .sign-grid{ grid-template-columns: 1fr; }
-      .doc-meta{ text-align:left; }
-      .cover-top{ flex-direction:column; align-items:flex-start; }
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 980px){
+      body{ padding: 12px; }
+      .header{ padding-left: var(--pad-sm); padding-right: var(--pad-sm); }
+      main{ padding-left: var(--pad-sm); padding-right: var(--pad-sm); }
+      .header-bottom{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .signatures{ grid-template-columns: 1fr; }
+      .meta-pills{ align-items:flex-start; }
+      .header-top{ flex-direction: column; align-items:flex-start; }
     }
   </style>
 </head>
 
 <body>
-  <div class="app">
-    <main class="doc">
-      <div class="ribbon"></div>
+  <div class="container">
+    <div class="top-accent"></div>
 
-      <!-- CAPA -->
-      <section class="cover">
-        <div class="cover-top">
-          <div class="brand">
-            <div class="logo">SAE</div>
-            <div class="brand-meta">
-              <div class="brand-name">SAE — Strategies</div>
-              <div class="brand-tag">Web • Automação • Inteligência Artificial</div>
-            </div>
+    <!-- HEADER SAE (cores da empresa) -->
+    <header class="header">
+      <div class="header-top">
+        <div class="brand">
+          <div class="logo-wrap">
+            <img src="/Logo SAE 2.0.jpg" alt="Logo da S.A.E Strategies" />
           </div>
-
-          <div class="doc-meta">
-            <div class="pill"><b>Proposta/Contrato</b> • Versão 1.0</div>
-            <div class="pill">Emissão: <b>__/__/____</b> • Validade: <b>__ dias</b></div>
+          <div class="brand-meta">
+            <div class="brand-name">S.A.E STRATEGIES</div>
+            <div class="brand-tag">Soluções Digitais Estratégicas • Web • Automação • IA</div>
           </div>
         </div>
 
-        <div class="cover-title">
-          <h1>Proposta Comercial & Contrato de Prestação de Serviços</h1>
-          <p>
-            Documento formal para alinhamento de escopo, cronograma, investimento, responsabilidades,
-            condições de pagamento e termos contratuais entre <b>SAE</b> e o cliente.
+        <div class="meta-pills">
+          <div class="pill">📄 <b>CONTRATO DE PRESTAÇÃO DE SERVIÇOS</b></div>
+          <div class="pill">📅 Emissão: <b id="current-date">__/__/____</b></div>
+          <div class="pill">⏳ Vigência: <b>30 dias</b></div>
+        </div>
+      </div>
+
+      <div class="header-title">
+        <h1>Contrato Particular (Pessoa Física) — Serviços Digitais</h1>
+        <p>
+          Instrumento elaborado para formalizar a contratação de serviços digitais pela <b>S.A.E Strategies</b> (Prestador Pessoa Física),
+          com cláusulas de escopo, pagamentos, confidencialidade, LGPD, responsabilidades, rescisão e foro.
+        </p>
+      </div>
+
+      <div class="header-bottom">
+        <div class="info-chip">
+          <div class="k">Cliente (Contratante)</div>
+          <div class="v">CTI Centro De Tratamento ao Idoso</div>
+        </div>
+        <div class="info-chip">
+          <div class="k">Responsável</div>
+          <div class="v">Rafael Pereira dos Santos</div>
+        </div>
+        <div class="info-chip">
+          <div class="k">Contato</div>
+          <div class="v">
+            <span class="mono">rafaterapia.projeto@gmail.com</span>
+            <span>•</span>
+            <span class="mono">(45) 99990-7771</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main>
+
+      <!-- SUMÁRIO -->
+      <section class="toc">
+        <h2>Sumário</h2>
+        <ol>
+          <li>Título e Identificação das Partes</li>
+          <li>Preâmbulo / Exposição de Motivos</li>
+          <li>Objeto do Contrato (Serviços, Entregáveis, Escopo e Exclusões)</li>
+          <li>Prazos, Vigência e Renovação</li>
+          <li>Preço, Forma de Pagamento, Tributos e Inadimplência</li>
+          <li>Obrigações das Partes</li>
+          <li>Confidencialidade, Propriedade Intelectual e LGPD</li>
+          <li>Garantias, Responsabilidades e Força Maior</li>
+          <li>Resolução, Rescisão e Penalidades</li>
+          <li>Foro e Legislação Aplicável</li>
+          <li>Disposições Gerais</li>
+          <li>Anexos</li>
+          <li>Assinaturas e Testemunhas</li>
+          <li>Checklist Pré-Assinatura</li>
+        </ol>
+      </section>
+
+      <!-- 1. TÍTULO E IDENTIFICAÇÃO DAS PARTES -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 1. TÍTULO E IDENTIFICAÇÃO DAS PARTES</div>
+          <div class="section-hint">Dados completos para validade e execução</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            Pelo presente instrumento particular, as partes abaixo identificadas celebram o presente
+            <span class="b">CONTRATO DE PRESTAÇÃO DE SERVIÇOS</span> (“Contrato”), mediante as cláusulas e condições a seguir.
           </p>
-        </div>
 
-        <div class="cover-cards">
-          <div class="cover-card">
-            <div class="k">Cliente</div>
-            <div class="v">[NOME DO CLIENTE / EMPRESA]</div>
-            <div class="s">CNPJ/CPF: [__] • Responsável: [__] • E-mail: [__]</div>
-          </div>
-          <div class="cover-card">
-            <div class="k">Projeto</div>
-            <div class="v">[NOME DO PROJETO]</div>
-            <div class="s">Serviço principal: [Site / Automação / IA] • Início previsto: [__/__/____]</div>
-          </div>
-        </div>
+          <div class="grid-2">
+            <div class="card">
+              <div class="k">Parte A — Contratante (Cliente)</div>
+              <div class="v">
+                <div><span class="b">Razão Social/Nome:</span> CTI Centro De Tratamento ao Idoso</div>
+                <div><span class="b">CNPJ:</span> 49.185.728/0001-24</div>
+                <div><span class="b">Endereço:</span> Rua 1131, nº 122, Centro — Balneário Camboriú</div>
+                <div><span class="b">Cidade/UF:</span> Paraná </div>
+                <div><span class="b">E-mail:</span> rafaterapia.projeto@gmail.com</div>
+                <div><span class="b">Telefone:</span> (45) 99990-7771</div>
+                <div><span class="b">Representante Legal:</span> Rafael Pereira dos Santos</div>
+              </div>
+            </div>
 
-        <div class="cover-footer">
-          <div class="fine">
-            <b>Confidencialidade:</b> este documento contém informações comerciais e técnicas.
-            Não deve ser compartilhado sem autorização por escrito.
-          </div>
-          <div>
-            Contato SAE: <b>[email@sae.com]</b><br />
-            Telefone: <b>[+55 (__) _____-____]</b>
+            <div class="card">
+              <div class="k">Parte B — Prestador (Contratado) • Pessoa Física</div>
+              <div class="v">
+                <div><span class="b">Nome completo:</span> Eduardo Lima Pimentel Lopes</div>
+                <div><span class="b">CPF:</span> 608.727.473-10</div>
+                <div><span class="b">Estado civil:</span> Solteiro</div>
+                <div><span class="b">Endereço:</span> Rua. Leonardo Mota,1730 Apto 1000</div>
+                <div><span class="b">E-mail:</span> saestrategiescpf@gmail.com</div>
+                <div><span class="b">Telefone:</span> (85) 9183-8422</div>
+                <div><span class="b">Nome assinatura comercial:</span> S.A.E Strategies</div>
+              </div>
+              <p class="small">A S.A.E Strategies atua como nome comercial do Prestador pessoa física, sem CNPJ.</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- CONTEÚDO -->
-      <section class="content">
-        <!-- RESUMO EXECUTIVO -->
-        <section class="section soft">
-          <div class="section-header">
-            <h2>1) Resumo Executivo</h2>
-            <div class="hint">Visão geral do projeto e objetivos</div>
-          </div>
-          <div class="hr"></div>
-
-          <p class="lead">
-            A SAE irá executar <b>[descrição curta do serviço]</b> com foco em resultado, qualidade e previsibilidade.
-            Este documento define de forma clara o <b>escopo</b>, <b>entregáveis</b>, <b>cronograma</b>, <b>investimento</b>
-            e <b>regras de execução</b>, garantindo alinhamento e transparência entre as partes.
+      <!-- 2. PREÂMBULO / EXPOSIÇÃO DE MOTIVOS -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 2. PREÂMBULO / EXPOSIÇÃO DE MOTIVOS</div>
+          <div class="section-hint">Intenção e contexto do acordo</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            Considerando que (i) o CONTRATANTE deseja contratar serviços digitais para aprimorar suas operações e presença digital;
+            (ii) o CONTRATADO possui experiência em desenvolvimento web, automação e soluções com inteligência artificial;
+            (iii) as partes desejam estabelecer regras claras de escopo, entregas, prazos, pagamentos, confidencialidade,
+            propriedade intelectual, proteção de dados e responsabilidades; resolvem firmar o presente Contrato.
           </p>
 
-          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-            <span class="badge"><span class="dot"></span> Padrão de Entrega Premium</span>
-            <span class="badge"><span class="dot"></span> Processo com checkpoints</span>
-            <span class="badge"><span class="dot"></span> Documentação + handoff</span>
-          </div>
-        </section>
+          <p class="p">
+            <span class="b">Contexto do serviço:</span> <span class="b">desenvolvimento de website profissional + automação de relatórios + aplicativo web/portal</span>
+            <br/>
+            <span class="b">Valor total:</span> <span class="b">R$ 6.000,00</span> •
+            <span class="b">Duração:</span> <span class="b">30 dias</span>.
+          </p>
+        </div>
+      </section>
 
-        <!-- DADOS DAS PARTES -->
-        <section class="section">
-          <div class="section-header">
-            <h2>2) Identificação das Partes</h2>
-            <div class="hint">Dados legais e contato</div>
-          </div>
-          <div class="hr"></div>
-
-          <div class="grid">
-            <div class="card">
-              <p class="title">Contratada</p>
-              <p class="value">
-                <b>SAE Strategies</b><br/>
-                CNPJ: [__]<br/>
-                Endereço: [__]<br/>
-                Responsável: [__] • CPF: [__]<br/>
-                E-mail: [__] • Telefone: [__]
-              </p>
-            </div>
-            <div class="card">
-              <p class="title">Contratante</p>
-              <p class="value">
-                <b>[NOME DO CLIENTE / EMPRESA]</b><br/>
-                CNPJ/CPF: [__]<br/>
-                Endereço: [__]<br/>
-                Responsável: [__] • CPF: [__]<br/>
-                E-mail: [__] • Telefone: [__]
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- OBJETIVO -->
-        <section class="section">
-          <div class="section-header">
-            <h2>3) Objetivo do Contrato</h2>
-            <div class="hint">O que será entregue</div>
-          </div>
-          <div class="hr"></div>
-
-          <p class="lead">
-            Este contrato tem como objetivo a prestação de serviços de <b>[descrição do serviço]</b>,
-            visando <b>[objetivo do cliente]</b> por meio de uma execução estruturada, com critérios de qualidade,
-            segurança e boas práticas de mercado.
+      <!-- 3. OBJETO / ESCOPO -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 3. DO OBJETO DO CONTRATO</div>
+          <div class="section-hint">Serviços, entregáveis, marcos, SLA e exclusões</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            3.1. O presente Contrato tem por objeto a prestação, pelo CONTRATADO, dos serviços digitais abaixo,
+            conforme opções e especificações escolhidas pelo CONTRATANTE, com entregas por marcos (“Milestones”),
+            padrões de qualidade e prazos, nos termos deste instrumento e de seus anexos.
           </p>
 
-          <div style="margin-top:12px;" class="callout">
-            <h3>Critério de sucesso</h3>
-            <p>
-              O sucesso do projeto será medido por: (i) entrega do escopo acordado, (ii) aprovação do cliente
-              nos marcos de validação, (iii) estabilidade operacional após publicação/implantação e (iv) cumprimento
-              do cronograma dentro do possível, considerando dependências do cliente.
-            </p>
-          </div>
-        </section>
-
-        <!-- ESCOPO E ENTREGÁVEIS -->
-        <section class="section">
-          <div class="section-header">
-            <h2>4) Escopo e Entregáveis</h2>
-            <div class="hint">O que está incluso</div>
-          </div>
-          <div class="hr"></div>
-
-          <p class="lead">Abaixo, os entregáveis previstos neste projeto:</p>
-
-          <ul class="clean">
-            <li class="li">
-              <div class="icon">01</div>
-              <div class="text">
-                <b>Descoberta & Planejamento</b>
-                <span>Briefing, entendimento do negócio, definição de objetivos, requisitos e critérios de aceite.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="icon">02</div>
-              <div class="text">
-                <b>UX/UI (quando aplicável)</b>
-                <span>Wireframe, protótipo, design system básico, telas-chave e revisão por checkpoints.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="icon">03</div>
-              <div class="text">
-                <b>Implementação</b>
-                <span>Desenvolvimento conforme escopo (site/app/automação/IA), padrões de qualidade e segurança.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="icon">04</div>
-              <div class="text">
-                <b>Testes & Validação</b>
-                <span>Revisões, ajustes e validação final. Checklist de entrega e homologação.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="icon">05</div>
-              <div class="text">
-                <b>Entrega & Handoff</b>
-                <span>Deploy/publicação, documentação, credenciais e orientação de uso/gestão (quando previsto).</span>
-              </div>
-            </li>
-          </ul>
-
-          <div style="margin-top:14px;" class="callout">
-            <h3>O que não está incluso (exemplos)</h3>
-            <p>
-              Aquisição de domínio/hospedagem, custos de ferramentas pagas, mídia/tráfego pago, criação de conteúdo extenso
-              (textos/fotos/vídeos), integrações não listadas no escopo, suporte contínuo fora do período acordado e quaisquer
-              demandas não formalizadas por aditivo.
-            </p>
-          </div>
-        </section>
-
-        <!-- CRONOGRAMA -->
-        <section class="section">
-          <div class="section-header">
-            <h2>5) Cronograma e Marcos</h2>
-            <div class="hint">Planejamento por etapas</div>
-          </div>
-          <div class="hr"></div>
-
+          <p class="p b">3.2. Serviços ofertados (catálogo SAE):</p>
           <table>
             <thead>
               <tr>
-                <th>Fase</th>
+                <th>Serviço</th>
                 <th>Descrição</th>
-                <th class="right">Prazo estimado</th>
-                <th class="right">Marco de validação</th>
+                <th>Preço (referência)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><b>Fase 1</b></td>
-                <td>Kickoff, requisitos e alinhamento de escopo</td>
-                <td class="right">__ dias</td>
-                <td class="right">Aprovação do briefing</td>
+                <td>Website Institucional</td>
+                <td>Até 3 páginas profissionais</td>
+                <td>R$ 1.200,00</td>
               </tr>
               <tr>
-                <td><b>Fase 2</b></td>
-                <td>UX/UI (quando aplicável) + protótipo e revisões</td>
-                <td class="right">__ dias</td>
-                <td class="right">Aprovação do protótipo</td>
+                <td>Website Profissional</td>
+                <td>Até 7 páginas, SEO avançado</td>
+                <td>R$ 2.500,00</td>
               </tr>
               <tr>
-                <td><b>Fase 3</b></td>
-                <td>Implementação + testes</td>
-                <td class="right">__ dias</td>
-                <td class="right">Homologação</td>
+                <td>Planilha Digital de Rotina</td>
+                <td>Automatizada e personalizada</td>
+                <td>R$ 600,00</td>
               </tr>
               <tr>
-                <td><b>Fase 4</b></td>
-                <td>Publicação/Deploy + handoff</td>
-                <td class="right">__ dias</td>
-                <td class="right">Entrega final</td>
+                <td>Automação de Relatórios</td>
+                <td>Relatórios avançados automatizados</td>
+                <td>R$ 1.700,00</td>
+              </tr>
+              <tr>
+                <td>Aplicativo Web</td>
+                <td>Portal da Família personalizado</td>
+                <td>R$ 2.200,00</td>
+              </tr>
+              <tr>
+                <td>Identidade Visual Essencial</td>
+                <td>Cartão digital + paleta personalizada</td>
+                <td>R$ 300,00</td>
+              </tr>
+              <tr>
+                <td>Identidade Visual Completa</td>
+                <td>Cartão digital/impresso + templates sociais</td>
+                <td>R$ 500,00</td>
+              </tr>
+              <tr>
+                <td>Suporte Essencial</td>
+                <td>Manutenção básica mensal</td>
+                <td>R$ 150,00/mês</td>
+              </tr>
+              <tr>
+                <td>Suporte Avançado</td>
+                <td>Manutenção completa mensal</td>
+                <td>R$ 300,00/mês</td>
               </tr>
             </tbody>
           </table>
 
-          <p class="lead" style="margin-top:10px;">
-            <span class="muted"><b>Observação:</b> prazos podem variar conforme dependências do cliente (envio de materiais, aprovações e acessos).</span>
+          <p class="p">
+            3.3. <span class="b">Serviços efetivamente contratados neste instrumento:</span>
+            <span class="b">Website Profissional + Automação de Relatórios + Aplicativo Web + Suporte Essencial</span>
           </p>
-        </section>
 
-        <!-- INVESTIMENTO -->
-        <section class="section">
-          <div class="section-header">
-            <h2>6) Investimento e Condições de Pagamento</h2>
-            <div class="hint">Valores e regras</div>
-          </div>
-          <div class="hr"></div>
-
+          <p class="p b">3.4. Entregáveis e marcos (Milestones):</p>
           <table>
             <thead>
               <tr>
-                <th>Item</th>
-                <th>Detalhes</th>
-                <th class="right">Valor</th>
+                <th>Marco</th>
+                <th>Entregável</th>
+                <th>Prazo estimado</th>
+                <th>Critério de aceite</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><b>Serviço principal</b></td>
-                <td class="muted">[Descrição do pacote / escopo]</td>
-                <td class="right money">R$ __.___,__</td>
+                <td>M1</td>
+                <td>Kickoff + levantamento de requisitos + plano de execução</td>
+                <td>5 dias úteis</td>
+                <td>Validação do escopo por e-mail/WhatsApp</td>
               </tr>
               <tr>
-                <td><b>Opcionais</b></td>
-                <td class="muted">[Ex.: manutenção, integrações, páginas adicionais]</td>
-                <td class="right money">R$ __.___,__</td>
+                <td>M2</td>
+                <td>Protótipo/estrutura + primeira entrega funcional</td>
+                <td>15 dias úteis</td>
+                <td>Aprovação do layout/fluxo + ajustes</td>
               </tr>
               <tr>
-                <td><b>Total</b></td>
-                <td class="muted">Valor total do contrato</td>
-                <td class="right money"><b>R$ __.___,__</b></td>
+                <td>M3</td>
+                <td>Entrega final + publicação/handoff</td>
+                <td>30 dias úteis</td>
+                <td>Checklist de entrega e homologação</td>
               </tr>
             </tbody>
           </table>
 
-          <div class="grid" style="margin-top:14px;">
-            <div class="card">
-              <p class="title">Forma de pagamento</p>
-              <p class="value">
-                Ex.: <b>50%</b> na assinatura + <b>50%</b> na entrega/homologação.<br/>
-                Alternativa: parcelamento em até <b>__x</b> (com/sem juros — definir).
-              </p>
-            </div>
-            <div class="card">
-              <p class="title">Validade da proposta</p>
-              <p class="value">
-                Esta proposta é válida por <b>__ dias</b> a partir da data de emissão.
-              </p>
-            </div>
-          </div>
-
-          <div style="margin-top:14px;" class="callout">
-            <h3>Atraso de pagamento</h3>
-            <p>
-              Em caso de atraso, poderá haver pausa na execução até regularização. Multa/juros: [definir % e regras],
-              conforme legislação aplicável e acordo entre as partes.
-            </p>
-          </div>
-        </section>
-
-        <!-- RESPONSABILIDADES -->
-        <section class="section">
-          <div class="section-header">
-            <h2>7) Responsabilidades das Partes</h2>
-            <div class="hint">Para evitar ruído e atraso</div>
-          </div>
-          <div class="hr"></div>
-
-          <div class="grid">
-            <div class="card">
-              <p class="title">Responsabilidades da SAE</p>
-              <ul class="clean" style="margin-top:0;">
-                <li class="li">
-                  <div class="icon">✓</div>
-                  <div class="text">
-                    <b>Executar o escopo acordado</b>
-                    <span>Com qualidade, boas práticas e checkpoints de validação.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="icon">✓</div>
-                  <div class="text">
-                    <b>Comunicação e gestão</b>
-                    <span>Status do projeto, alinhamentos e registro de decisões importantes.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="icon">✓</div>
-                  <div class="text">
-                    <b>Entrega e documentação</b>
-                    <span>Handoff, orientações e entrega de acessos conforme combinado.</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <p class="title">Responsabilidades do Cliente</p>
-              <ul class="clean" style="margin-top:0;">
-                <li class="li">
-                  <div class="icon">✓</div>
-                  <div class="text">
-                    <b>Fornecer materiais e acessos</b>
-                    <span>Textos, imagens, credenciais e integrações necessárias.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="icon">✓</div>
-                  <div class="text">
-                    <b>Aprovar nos prazos</b>
-                    <span>Aprovações e feedbacks dentro de [__] dias úteis.</span>
-                  </div>
-                </li>
-                <li class="li">
-                  <div class="icon">✓</div>
-                  <div class="text">
-                    <b>Pagamentos em dia</b>
-                    <span>Conforme condições estabelecidas na proposta/contrato.</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- COMUNICAÇÃO, REUNIÕES, MUDANÇAS -->
-        <section class="section">
-          <div class="section-header">
-            <h2>8) Comunicação, Reuniões e Gestão de Mudanças</h2>
-            <div class="hint">Regras de fluxo</div>
-          </div>
-          <div class="hr"></div>
-
-          <div class="grid">
-            <div class="card">
-              <p class="title">Canais oficiais</p>
-              <p class="value">
-                WhatsApp/Slack: [__]<br/>
-                E-mail: [__]<br/>
-                Repositório/Docs: [__]
-              </p>
-            </div>
-            <div class="card">
-              <p class="title">Checkpoints e revisões</p>
-              <p class="value">
-                Inclui <b>__</b> rodadas de revisão por etapa (design/entrega). Ajustes fora do escopo serão tratados via aditivo.
-              </p>
-            </div>
-          </div>
-
-          <div style="margin-top:14px;" class="callout">
-            <h3>Gestão de mudanças (Aditivo)</h3>
-            <p>
-              Qualquer solicitação fora do escopo será avaliada e orçada. Após aprovação por escrito, entra como aditivo,
-              com impacto em prazo e investimento.
-            </p>
-          </div>
-        </section>
-
-        <!-- CONFIDENCIALIDADE E LGPD -->
-        <section class="section">
-          <div class="section-header">
-            <h2>9) Confidencialidade, LGPD e Segurança</h2>
-            <div class="hint">Proteção de informações</div>
-          </div>
-          <div class="hr"></div>
-
-          <p class="lead">
-            As partes se comprometem a manter confidenciais as informações compartilhadas durante o projeto.
-            Quando houver tratamento de dados pessoais, será observado o cumprimento da <b>LGPD</b>, adotando medidas
-            razoáveis de segurança e acesso.
-          </p>
-
-          <div class="grid" style="margin-top:12px;">
-            <div class="card">
-              <p class="title">Confidencialidade</p>
-              <p class="value">Validade: durante o contrato e por <b>__ meses</b> após seu término (ou conforme acordado).</p>
-            </div>
-            <div class="card">
-              <p class="title">Segurança</p>
-              <p class="value">Acessos fornecidos pelo cliente devem ser restritos e poderão ser revogados ao final do projeto.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- PROPRIEDADE INTELECTUAL -->
-        <section class="section">
-          <div class="section-header">
-            <h2>10) Propriedade Intelectual e Materiais</h2>
-            <div class="hint">Direitos e uso</div>
-          </div>
-          <div class="hr"></div>
-
-          <p class="lead">
-            Após quitação integral, o cliente terá direito de uso sobre os entregáveis previstos no escopo, exceto
-            componentes licenciados por terceiros. A SAE poderá reutilizar <b>know-how</b>, processos e padrões genéricos
-            sem expor informações confidenciais.
-          </p>
-
-          <div style="margin-top:12px;" class="callout">
-            <h3>Portfólio</h3>
-            <p>
-              A SAE poderá exibir o projeto em portfólio (ex.: prints e descrição) <b>apenas mediante autorização</b> do cliente.
-              Caso o cliente não autorize, isso deve ser registrado por escrito.
-            </p>
-          </div>
-        </section>
-
-        <!-- GARANTIA, SUPORTE, SLA -->
-        <section class="section">
-          <div class="section-header">
-            <h2>11) Garantia e Suporte Pós-Entrega</h2>
-            <div class="hint">Estabilidade após publicação</div>
-          </div>
-          <div class="hr"></div>
-
-          <div class="grid">
-            <div class="card">
-              <p class="title">Garantia</p>
-              <p class="value">
-                Período: <b>__ dias</b> após entrega final.<br/>
-                Cobre correções de bugs relacionados ao escopo entregue.
-              </p>
-            </div>
-            <div class="card">
-              <p class="title">Suporte (opcional)</p>
-              <p class="value">
-                Plano mensal: <b>R$ __.___,__</b><br/>
-                Inclui: ajustes leves, monitoramento básico e melhorias contínuas (definir limites).
-              </p>
-            </div>
-          </div>
-
-          <p class="lead" style="margin-top:12px;">
-            <span class="muted"><b>Não inclui:</b> mudanças de escopo, novas funcionalidades, custos de terceiros e problemas causados por alterações feitas fora da SAE.</span>
-          </p>
-        </section>
-
-        <!-- RESCISÃO -->
-        <section class="section">
-          <div class="section-header">
-            <h2>12) Rescisão e Cancelamento</h2>
-            <div class="hint">Regras de encerramento</div>
-          </div>
-          <div class="hr"></div>
-
-          <p class="lead">
-            O contrato poderá ser rescindido por qualquer parte mediante aviso prévio de <b>__ dias</b>. Em caso de rescisão,
-            o cliente pagará proporcionalmente ao trabalho executado até a data, e a SAE entregará os materiais produzidos
-            até então (no estado atual), conforme pagamentos realizados.
-          </p>
-        </section>
-
-        <!-- DISPOSIÇÕES GERAIS -->
-        <section class="section">
-          <div class="section-header">
-            <h2>13) Disposições Gerais</h2>
-            <div class="hint">Cláusulas finais</div>
-          </div>
-          <div class="hr"></div>
-
-          <ul class="clean" style="margin-top:0;">
-            <li class="li">
-              <div class="icon">§</div>
-              <div class="text">
-                <b>Aceite</b>
-                <span>O aceite poderá ocorrer por assinatura física/digital e/ou confirmação formal por e-mail.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="icon">§</div>
-              <div class="text">
-                <b>Alterações</b>
-                <span>Qualquer alteração deverá ser formalizada por escrito (aditivo).</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="icon">§</div>
-              <div class="text">
-                <b>Foro</b>
-                <span>Fica eleito o foro da comarca de <b>[CIDADE/UF]</b>, com renúncia de qualquer outro.</span>
-              </div>
-            </li>
+          <p class="p b">3.5. Padrões de desempenho / SLA (quando aplicável):</p>
+          <ul class="clean">
+            <li>Disponibilidade e performance dependem de hospedagem/infra do CONTRATANTE ou terceiro.</li>
+            <li>Tempo de resposta de suporte: até <span class="b">6</span> horas úteis.</li>
+            <li>Correções de bugs (garantia): conforme Cláusula 7.</li>
           </ul>
-        </section>
 
-        <!-- ASSINATURAS -->
-        <section class="section soft">
-          <div class="section-header">
-            <h2>14) Assinaturas</h2>
-            <div class="hint">Formalização do acordo</div>
-          </div>
-          <div class="hr"></div>
+          <p class="p b">3.6. Exclusões (fora do escopo), salvo aditivo:</p>
+          <ul class="clean">
+            <li>Compra de domínio, hospedagem, e-mails corporativos e ferramentas pagas (salvo se previsto em anexo);</li>
+            <li>Conteúdo extenso (textos/fotos/vídeos) não fornecido pelo CONTRATANTE;</li>
+            <li>Integrações não descritas, alterações ilimitadas e novas funcionalidades não aprovadas;</li>
+            <li>Gestão de tráfego pago/ads e produção de mídia profissional (salvo contratação específica).</li>
+          </ul>
+        </div>
+      </section>
 
-          <p class="lead">
-            E por estarem de acordo, as partes assinam o presente instrumento em <b>__/__/____</b>.
+      <!-- 4. PRAZO E VIGÊNCIA -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 4. PRAZO E VIGÊNCIA</div>
+          <div class="section-hint">Início, término, renovação e rescisão antecipada</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            4.1. O presente Contrato entra em vigor na data de sua assinatura e terá vigência de <span class="b">[INSIRA PRAZO] *</span>,
+            iniciando-se em <span class="b">[DATA DE INÍCIO] *</span> e encerrando-se em <span class="b">[DATA DE TÉRMINO] *</span>,
+            podendo ser prorrogado por acordo escrito entre as partes.
+          </p>
+          <p class="p">
+            4.2. O cronograma poderá ser ajustado em caso de atraso no envio de materiais/aprovações pelo CONTRATANTE,
+            ou por eventos de força maior, sem que isso configure inadimplemento do CONTRATADO.
+          </p>
+        </div>
+      </section>
+
+      <!-- 5. PREÇO E PAGAMENTO -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 5. PREÇO E FORMA DE PAGAMENTO</div>
+          <div class="section-hint">Valor total, parcelas, marcos, inadimplência e tributos</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            5.1. O valor total pelos serviços contratados é de <span class="b">R$ 6.000,00</span>, em moeda corrente nacional (BRL).
           </p>
 
-          <div class="sign-grid">
-            <div class="sign">
-              <div>
-                <div class="badge"><span class="dot"></span> Contratada</div>
-                <div class="line"></div>
-              </div>
-              <div class="meta">
-                <b>SAE Strategies</b>
-                <span>Representante: [__]</span>
-                <span>CPF: [__]</span>
-              </div>
-            </div>
+          <p class="p b">5.2. Implantação (opções):</p>
+          <ul class="clean">
+            <li><span class="b">À vista</span> com <span class="b">5% de desconto</span>; <span class="b">OU</span></li>
+            <li><span class="b">Parcelado em até 4x sem juros</span> via PIX, boleto ou cartão (quando disponível).</li>
+            <li>Caso seja credito tera uma taxa de <span class="b">4%</span></li>
+          </ul>
 
-            <div class="sign">
-              <div>
-                <div class="badge"><span class="dot"></span> Contratante</div>
-                <div class="line"></div>
-              </div>
-              <div class="meta">
-                <b>[NOME DO CLIENTE / EMPRESA]</b>
-                <span>Representante: [__]</span>
-                <span>CPF/CNPJ: [__]</span>
-              </div>
-            </div>
-          </div>
+          <p class="p b">5.3. Mensalidade (quando houver suporte):</p>
+          <ul class="clean">
+            <li>Vencimento fixo todo dia <span class="b">10</span> do mês;</li>
+            <li>Formas aceitas: PIX, boleto ou cartão recorrente;</li>
+            <li>Planos: Essencial (R$ 150,00/mês) e Avançado (R$ 300,00/mês) — conforme contratado.</li>
+          </ul>
 
-          <div class="footer">
-            <div>SAE Strategies • [site] • [email] • [telefone]</div>
-            <div>Documento: Proposta/Contrato • Versão 1.0</div>
-          </div>
-        </section>
+          <p class="p b">5.4. Plano por marcos (exemplo — edite conforme seu projeto):</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Marco</th>
+                <th>Condição</th>
+                <th>Valor</th>
+                <th>Vencimento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>M1</td>
+                <td>Assinatura do contrato + início (sinal)</td>
+                <td>R$ 1.500,00</td>
+                <td>5 dias</td>
+              </tr>
+              <tr>
+                <td>M2</td>
+                <td>Entrega parcial / validação intermediária</td>
+                <td>R$ 3.000,00</td>
+                <td>30 a 60 dias do projeto</td>
+              </tr>
+              <tr>
+                <td>M3</td>
+                <td>Entrega final / publicação</td>
+                <td>R$ 1.500,00</td>
+                <td>90 dias</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="p">
+            5.5. <span class="b">Inadimplência:</span> em caso de atraso no pagamento, incidirá multa moratória de <span class="b">2%</span>
+            sobre o valor devido, acrescida de juros de <span class="b">1% ao mês</span> (ou o máximo permitido em lei).
+            O CONTRATADO poderá suspender a execução até a regularização, sem prejuízo de prazos.
+          </p>
+
+          <p class="p">
+            5.6. <span class="b">Tributos:</span> por se tratar de prestação por <span class="b">Pessoa Física</span>, eventuais tributos
+            incidentes (quando aplicáveis) serão tratados conforme legislação e acordos operacionais entre as partes.
+            O CONTRATANTE reconhece que poderá haver retenções legais, se aplicável, devendo comunicar previamente ao CONTRATADO.
+          </p>
+
+          <p class="p small">
+            Observação prática: para pessoa física, normalmente não há emissão de NFS-e como PJ. Se o cliente exigir nota fiscal, considere aditivo/adequação futura.
+          </p>
+        </div>
       </section>
+
+      <!-- 6. OBRIGAÇÕES -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 6. OBRIGAÇÕES DAS PARTES</div>
+          <div class="section-hint">Deveres para evitar atrasos e risco</div>
+        </div>
+        <div class="section-body">
+          <p class="p b">6.1. Obrigações do CONTRATADO (Prestador):</p>
+          <ul class="clean">
+            <li>Executar os serviços com zelo, técnica e padrões profissionais;</li>
+            <li>Comunicar riscos, dependências e impedimentos com antecedência razoável;</li>
+            <li>Realizar entregas conforme marcos e registrar aprovações;</li>
+            <li>Manter confidencialidade e aplicar medidas razoáveis de segurança;</li>
+            <li>Disponibilizar suporte/garantia conforme contratado.</li>
+          </ul>
+
+          <p class="p b">6.2. Obrigações do CONTRATANTE (Cliente):</p>
+          <ul class="clean">
+            <li>Fornecer informações, acessos, materiais, logins e autorizações necessárias;</li>
+            <li>Garantir que possui direitos de uso de imagens, marcas, textos e demais materiais fornecidos;</li>
+            <li>Aprovar entregas ou solicitar ajustes em até <span class="b">5 dias úteis</span> (ou outro prazo acordado);</li>
+            <li>Efetuar pagamentos pontualmente;</li>
+            <li>Não realizar alterações técnicas sem alinhamento formal durante o projeto.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 7. CONFIDENCIALIDADE, PI e LGPD -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 7. CONFIDENCIALIDADE, PROPRIEDADE INTELECTUAL E LGPD</div>
+          <div class="section-hint">NDA, titularidade e dados pessoais</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            7.1. <span class="b">Confidencialidade:</span> as partes obrigam-se a manter sigilo sobre informações técnicas,
+            comerciais e estratégicas obtidas em razão deste Contrato, por prazo mínimo de <span class="b">5 (cinco) anos</span>
+            após o término, inclusive sobre valores, processos e dados.
+          </p>
+
+          <p class="p">
+            7.2. <span class="b">Propriedade Intelectual:</span> após a quitação integral, os entregáveis específicos produzidos
+            para o CONTRATANTE (ex.: layout final, páginas, automações customizadas) serão licenciados/cedidos ao CONTRATANTE
+            conforme <span class="b">[DEFINIR: cessão total OU licença de uso]</span>. Componentes genéricos, bibliotecas,
+            frameworks e know-how permanecem com o CONTRATADO.
+          </p>
+
+          <p class="p">
+            7.3. <span class="b">LGPD:</span> se houver tratamento de dados pessoais, as partes comprometem-se a cumprir a Lei nº 13.709/2018,
+            adotando medidas de segurança, minimização de dados e acesso restrito. O CONTRATANTE será o <span class="b">Controlador</span>
+            e o CONTRATADO, quando aplicável, o <span class="b">Operador</span>, conforme definições da LGPD.
+          </p>
+
+          <p class="p">
+            7.4. <span class="b">Marco Civil:</span> quando aplicável, as partes observarão a Lei nº 12.965/2014 quanto a registros,
+            uso de dados e conformidade em serviços digitais.
+          </p>
+
+          <p class="p">
+            7.5. <span class="b">Não concorrência (opcional):</span> [INSERIR SE APLICÁVEL], definindo prazo, território e escopo razoáveis.
+          </p>
+        </div>
+      </section>
+
+      <!-- 8. GARANTIAS / RESPONSABILIDADES / FORÇA MAIOR -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 8. GARANTIAS E RESPONSABILIDADES</div>
+          <div class="section-hint">Garantia, limitação, indenização e força maior</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            8.1. <span class="b">Garantia:</span> o CONTRATADO concede garantia de <span class="b">15 (quinze) dias</span> após a entrega final
+            para correção de bugs/erros diretamente relacionados ao escopo entregue, sem custo adicional.
+          </p>
+
+          <p class="p">
+            8.2. <span class="b">Limitação de responsabilidade:</span> exceto por dolo, fraude ou violação de confidencialidade,
+            a responsabilidade total do CONTRATADO fica limitada ao valor total efetivamente pago neste Contrato.
+            Não há responsabilidade por lucros cessantes indiretos, perda de oportunidade ou danos consequenciais.
+          </p>
+
+          <p class="p">
+            8.3. <span class="b">Indenização:</span> cada parte indenizará a outra por danos diretos comprovados decorrentes de sua culpa,
+            nos limites deste Contrato.
+          </p>
+
+          <p class="p">
+            8.4. <span class="b">Força maior:</span> nenhuma das partes responderá por atrasos/descumprimento decorrentes de eventos
+            imprevisíveis e inevitáveis, incluindo (sem limitar) pandemias, greves, quedas prolongadas de energia/internet,
+            ataques cibernéticos de terceiros, desastres naturais e atos governamentais.
+          </p>
+        </div>
+      </section>
+
+      <!-- 9. RESCISÃO / PENALIDADES -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 9. RESOLUÇÃO, RESCISÃO E PENALIDADES</div>
+          <div class="section-hint">Quebra, aviso, multas e efeitos</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            9.1. O Contrato poderá ser rescindido por qualquer parte mediante aviso prévio de <span class="b">30 (trinta) dias</span>,
+            por escrito, salvo hipóteses de rescisão imediata por justa causa.
+          </p>
+
+          <p class="p">
+            9.2. Constitui justa causa: (i) inadimplência superior a <span class="b">15 dias</span> dias; (ii) violação de confidencialidade;
+            (iii) uso indevido de propriedade intelectual; (iv) descumprimento grave de obrigação essencial.
+          </p>
+
+          <p class="p">
+            9.3. <span class="b">Multa por descumprimento:</span> poderá ser aplicada multa entre <span class="b">10% e 50%</span> do valor total do contrato,
+            conforme gravidade e prejuízos, além de perdas e danos cabíveis, respeitada a legislação.
+          </p>
+
+          <p class="p">
+            9.4. Em caso de rescisão, o CONTRATADO fará a entrega do que estiver produzido até a data, desde que os pagamentos proporcionais
+            tenham sido quitados.
+          </p>
+        </div>
+      </section>
+
+      <!-- 10. FORO -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 10. FORO E LEGISLAÇÃO APLICÁVEL</div>
+          <div class="section-hint">Jurisdição e lei brasileira</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            10.1. Este Contrato será regido pelas leis da República Federativa do Brasil.
+          </p>
+          <p class="p">
+            10.2. Fica eleito o <span class="b">Foro da Comarca de Fortaleza/CE</span>, com renúncia a qualquer outro, por mais privilegiado que seja,
+            para dirimir controvérsias oriundas deste Contrato.
+          </p>
+        </div>
+      </section>
+
+      <!-- 11. DISPOSIÇÕES GERAIS -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 11. DISPOSIÇÕES GERAIS</div>
+          <div class="section-hint">Integração, nulidade, notificações e anticorrupção</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            11.1. <span class="b">Integração:</span> este Contrato e seus anexos representam o acordo integral entre as partes.
+          </p>
+          <p class="p">
+            11.2. <span class="b">Alterações:</span> qualquer alteração somente terá validade se realizada por escrito (aditivo).
+          </p>
+          <p class="p">
+            11.3. <span class="b">Notificações:</span> serão válidas por e-mail e/ou correspondência com comprovação, para os contatos indicados na Cláusula 1.
+          </p>
+          <p class="p">
+            11.4. <span class="b">Anticorrupção:</span> as partes declaram cumprir a Lei nº 12.846/2013, abstendo-se de qualquer prática de corrupção,
+            pagamento indevido ou vantagem ilícita.
+          </p>
+          <p class="p">
+            11.5. <span class="b">Relação trabalhista:</span> este Contrato não gera vínculo empregatício, subordinação ou exclusividade,
+            sendo relação de prestação de serviços, com autonomia técnica do CONTRATADO.
+          </p>
+          <p class="p">
+            11.6. <span class="b">Nulidade parcial:</span> se qualquer cláusula for considerada inválida, as demais permanecerão em pleno vigor.
+          </p>
+        </div>
+      </section>
+
+      <!-- 12. ANEXOS -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 12. ANEXOS</div>
+          <div class="section-hint">Espaços para especificações e planos</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            <span class="b">ANEXO I</span> — Escopo técnico detalhado, especificações e requisitos.<br/>
+            <span class="b">ANEXO II</span> — Plano de pagamento e marcos (Milestones).<br/>
+            <span class="b">ANEXO III</span> — Regras de suporte, SLA e manutenção (se aplicável).<br/>
+            <span class="b">ANEXO IV</span> — Política de privacidade / tratamento de dados (LGPD), quando aplicável.
+          </p>
+        </div>
+      </section>
+
+      <!-- 13. ASSINATURAS -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 13. ASSINATURAS E TESTEMUNHAS</div>
+          <div class="section-hint">Assinatura física e digital (ICP-Brasil)</div>
+        </div>
+        <div class="section-body">
+          <p class="p">
+            E por estarem justas e contratadas, as partes assinam o presente instrumento em 2 (duas) vias de igual teor,
+            juntamente com 2 (duas) testemunhas. As partes reconhecem a validade de assinatura digital, inclusive via plataformas
+            com certificado <span class="b">ICP-Brasil</span>, quando aplicável.
+          </p>
+
+          <div class="signatures">
+            <div class="sign-box">
+              <div class="b">CONTRATANTE</div>
+              <div class="sign-line">
+                Nome/Razão Social: CTI Centro De Tratamento ao Idoso<br/>
+                Representante: Rafael Pereira dos Santos<br/>
+                CPF do representante: 021.875.755-78<br/>
+                Data: ____/____/______<br/>
+                Assinatura: ____________________________________
+              </div>
+            </div>
+
+            <div class="sign-box">
+              <div class="b">CONTRATADO — Pessoa Física</div>
+              <div class="sign-line">
+                Nome: Eduardo Lima<br/>
+                CPF: 608.727.473-10<br/>
+                Data: ____/____/______<br/>
+                Assinatura: ____________________________________
+              </div>
+            </div>
+          </div>
+
+
+      <!-- 14. CHECKLIST -->
+      <section class="section">
+        <div class="section-head">
+          <div class="section-title"><span class="dot"></span> 14. CHECKLIST PRÉ-ASSINATURA</div>
+          <div class="section-hint">Preencha antes de assinar</div>
+        </div>
+        <div class="section-body">
+          <ul class="clean">
+            <li>[ ] Confirmar dados completos do CONTRATANTE (CNPJ, endereço, representante, CPF, estado civil).</li>
+            <li>[ ] Preencher dados completos do CONTRATADO (CPF, RG, endereço em Fortaleza/CE, e-mail e telefone).</li>
+            <li>[ ] Definir serviços efetivamente contratados e anexar escopo detalhado (ANEXO I).</li>
+            <li>[ ] Definir marcos, prazos e critérios de aceite (Cláusula 3.4 e ANEXO II).</li>
+            <li>[ ] Preencher valor total e forma de pagamento (Cláusula 5).</li>
+            <li>[ ] Definir se haverá suporte mensal e qual plano (Essencial/Avançado).</li>
+            <li>[ ] Validar regras de LGPD e responsabilidades (Cláusulas 7 e 8).</li>
+            <li>[ ] Colher assinaturas e dados das 2 testemunhas.</li>
+          </ul>
+        </div>
+      </section>
+
     </main>
+
+    <footer class="footer">
+      <p><b>S.A.E STRATEGIES</b> — Fortaleza/CE • Soluções Digitais Estratégicas</p>
+      <p>www.saestrategies.com • saestrategiescpf@gmail.com • (61) 98317-9051</p>
+    </footer>
   </div>
+
+  <script>
+    const today = new Date();
+    document.getElementById("current-date").textContent = today.toLocaleDateString("pt-BR");
+  </script>
 </body>
 </html>
