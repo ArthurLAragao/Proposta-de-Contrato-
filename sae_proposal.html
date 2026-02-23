@@ -8,26 +8,24 @@
   <style>
     /* =========================================================
        SAE — CONTRATO (PESSOA FÍSICA) • PAPEL BRANCO • HEADER SAE
-       - Papel branco (mais formal e jurídico)
-       - Header com identidade (teal/cyan)
-       - Conteúdo completo + dados preenchidos (cliente + prestador PF)
-       - Pronto para imprimir/PDF (A4)
+       Mudança aplicada:
+       - Header agora destaca o REPRESENTANTE (Prestador PF)
+       - Remove “empresa” como parte na header (sem CNPJ)
+       - Mantém paleta teal/cyan e visual premium
     ========================================================== */
 
     :root{
-      --bg: #0b1220;        /* fundo da página (tela) */
-      --paper: #ffffff;     /* papel branco */
-      --ink: #0f172a;       /* texto */
-      --muted: #475569;     /* texto secundário */
-      --line: #e2e8f0;      /* linhas */
+      --bg: #0b1220;
+      --paper: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: #e2e8f0;
       --soft: #f8fafc;
 
-      /* Identidade SAE (mantém sua paleta teal/cyan) */
       --primary: #14b8a6;
       --primary-dark: #0f766e;
       --cyan: #22d3ee;
 
-      --radius: 14px;
       --shadow: 0 18px 45px rgba(2,6,23,.18);
 
       --maxw: 210mm;
@@ -68,7 +66,7 @@
     .header{
       background: linear-gradient(135deg, #071313 0%, #0b2b29 40%, #0f766e 100%);
       color: #ffffff;
-      padding: 28px var(--pad) 22px;
+      padding: 26px var(--pad) 20px;
       border-bottom: 2px solid var(--primary);
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -93,54 +91,69 @@
       gap: 16px;
     }
 
-    .brand{
+    /* === Representante / Prestador (PF) === */
+    .rep{
       display:flex;
       align-items:center;
       gap: 14px;
       min-width: 0;
     }
 
-    .logo-wrap{
-      width: 74px;
-      height: 74px;
-      border-radius: 18px;
-      overflow:hidden;
-      border: 1px solid rgba(0,255,221,.55);
-      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,0)),
-                  linear-gradient(135deg, var(--primary), var(--cyan));
-      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    /* fallback caso não tenha foto */
+    .rep-initials{
+      font-weight: 900;
+      letter-spacing: .5px;
+      color: #071313;
+      background: rgba(255,255,255,.9);
+      width: 100%;
+      height: 100%;
       display:grid;
       place-items:center;
-      flex: 0 0 auto;
-    }
-    .logo-wrap img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
+      font-size: 14px;
     }
 
-    .brand-meta{
+    .rep-meta{
       display:flex;
       flex-direction:column;
       gap: 2px;
       min-width: 0;
     }
-    .brand-name{
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: .6px;
-      line-height: 1.1;
+    .rep-name{
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: .2px;
+      line-height: 1.15;
       white-space: nowrap;
       overflow:hidden;
       text-overflow: ellipsis;
     }
-    .brand-tag{
+    .rep-role{
       font-size: 12.5px;
-      color: rgba(255,255,255,.82);
+      color: rgba(255,255,255,.84);
       white-space: nowrap;
       overflow:hidden;
       text-overflow: ellipsis;
+    }
+    .rep-brand{
+      margin-top: 4px;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: rgba(255,255,255,.86);
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(17,24,39,.30);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      white-space: nowrap;
     }
 
     .meta-pills{
@@ -166,21 +179,21 @@
     .pill b{ color:#fff; font-weight:900; }
 
     .header-title{
-      margin-top: 16px;
+      margin-top: 14px;
       display:flex;
       flex-direction:column;
       gap: 8px;
     }
     .header-title h1{
       margin:0;
-      font-size: 26px;
-      font-weight: 900;
+      font-size: 24px;
+      font-weight: 950;
       letter-spacing: .2px;
     }
     .header-title p{
       margin:0;
-      max-width: 860px;
-      color: rgba(255,255,255,.85);
+      max-width: 900px;
+      color: rgba(255,255,255,.86);
       font-size: 13.5px;
       line-height: 1.55;
     }
@@ -210,7 +223,7 @@
     }
     .info-chip .v{
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 850;
       color: rgba(255,255,255,.95);
       display:flex;
       gap: 10px;
@@ -426,47 +439,56 @@
   <div class="container">
     <div class="top-accent"></div>
 
-    <!-- HEADER SAE (cores da empresa) -->
+    <!-- HEADER (Agora: dados do representante PF, sem confusão de CNPJ) -->
     <header class="header">
       <div class="header-top">
-        <div class="brand">
-          <div class="logo-wrap">
-            <img src="/Logo SAE 2.0.jpg" alt="Logo da S.A.E Strategies" />
+        <!-- Representante / Prestador PF -->
+        <div class="rep">
+          <div class="rep-photo" aria-label="Foto do representante">
           </div>
-          <div class="brand-meta">
-            <div class="brand-name">S.A.E STRATEGIES</div>
-            <div class="brand-tag">Soluções Digitais Estratégicas • Web • Automação • IA</div>
+
+          <div class="rep-meta">
+            <div class="rep-name">Eduardo Lima Pimentel Lopes</div>
+            <div class="rep-role">Prestador de Serviços (Pessoa Física) • Assinatura comercial: <b>S.A.E Strategies</b></div>
+
+            <div class="rep-brand">
+              <span class="badge">📍 Fortaleza/CE</span>
+              <span class="badge">📧 <span class="mono">saestrategiescpf@gmail.com</span></span>
+              <span class="badge">📞 <span class="mono">(85) 9183-8422</span></span>
+            </div>
           </div>
         </div>
 
+        <!-- Meta do documento -->
         <div class="meta-pills">
           <div class="pill">📄 <b>CONTRATO DE PRESTAÇÃO DE SERVIÇOS</b></div>
           <div class="pill">📅 Emissão: <b id="current-date">__/__/____</b></div>
-          <div class="pill">⏳ Vigência: <b>30 dias</b></div>
+          <div class="pill">⏳ Duração: <b>30 dias</b></div>
         </div>
       </div>
 
       <div class="header-title">
         <h1>Contrato Particular (Pessoa Física) — Serviços Digitais</h1>
         <p>
-          Instrumento elaborado para formalizar a contratação de serviços digitais pela <b>S.A.E Strategies</b> (Prestador Pessoa Física),
-          com cláusulas de escopo, pagamentos, confidencialidade, LGPD, responsabilidades, rescisão e foro.
+          Instrumento para formalizar a contratação de serviços digitais entre o <b>CONTRATANTE</b> e o <b>CONTRATADO (Pessoa Física)</b>,
+          que utiliza a assinatura comercial <b>S.A.E Strategies</b> (sem CNPJ), com regras de escopo, pagamentos, confidencialidade,
+          LGPD, responsabilidades, rescisão e foro.
         </p>
       </div>
 
       <div class="header-bottom">
         <div class="info-chip">
-          <div class="k">Cliente (Contratante)</div>
-          <div class="v">CTI Centro De Tratamento ao Idoso</div>
+          <div class="k">Contratante (Cliente)</div>
+          <div class="v">Rafaterapia Homecare e Treinamentos LTDA</div>
         </div>
         <div class="info-chip">
-          <div class="k">Responsável</div>
+          <div class="k">Representante do Contratante</div>
           <div class="v">Rafael Pereira dos Santos</div>
         </div>
         <div class="info-chip">
-          <div class="k">Contato</div>
+          <div class="k">Contato do Contratante</div>
           <div class="v">
-            <span class="mono">rafaterapia.projeto@gmail.com</span>
+            <span class="mono">rafael.terapiafoz@gmail.com</span>
             <span>•</span>
             <span class="mono">(45) 99990-7771</span>
           </div>
@@ -514,28 +536,29 @@
             <div class="card">
               <div class="k">Parte A — Contratante (Cliente)</div>
               <div class="v">
-                <div><span class="b">Razão Social/Nome:</span> CTI Centro De Tratamento ao Idoso</div>
+                <div><span class="b">Razão Social/Nome:</span> Rafaterapia Homecare e Treinamentos LTDA</div>
                 <div><span class="b">CNPJ:</span> 49.185.728/0001-24</div>
-                <div><span class="b">Endereço:</span> Rua 1131, nº 122, Centro — Balneário Camboriú</div>
-                <div><span class="b">Cidade/UF:</span> Paraná </div>
-                <div><span class="b">E-mail:</span> rafaterapia.projeto@gmail.com</div>
+                <div><span class="b">Endereço:</span> Avenida Felipe Wandscheer, 1616 - Foz do Iguaçu</div>
+                <div><span class="b">Cidade/UF:</span> Paraná</div>
+                <div><span class="b">E-mail:</span> rafael.terapiafoz@gmail.com</div>
                 <div><span class="b">Telefone:</span> (45) 99990-7771</div>
                 <div><span class="b">Representante Legal:</span> Rafael Pereira dos Santos</div>
+                <div><span class="b">CPF/RG:</span> 021.875.755-78</div>
               </div>
             </div>
 
             <div class="card">
-              <div class="k">Parte B — Prestador (Contratado) • Pessoa Física</div>
+              <div class="k">Parte B — Contratado (Prestador) • Pessoa Física</div>
               <div class="v">
                 <div><span class="b">Nome completo:</span> Eduardo Lima Pimentel Lopes</div>
                 <div><span class="b">CPF:</span> 608.727.473-10</div>
                 <div><span class="b">Estado civil:</span> Solteiro</div>
-                <div><span class="b">Endereço:</span> Rua. Leonardo Mota,1730 Apto 1000</div>
+                <div><span class="b">Endereço:</span> Rua Leonardo Mota, 1730, Apto 1000 — Fortaleza/CE</div>
                 <div><span class="b">E-mail:</span> saestrategiescpf@gmail.com</div>
                 <div><span class="b">Telefone:</span> (85) 9183-8422</div>
-                <div><span class="b">Nome assinatura comercial:</span> S.A.E Strategies</div>
+                <div><span class="b">Assinatura comercial:</span> S.A.E Strategies</div>
               </div>
-              <p class="small">A S.A.E Strategies atua como nome comercial do Prestador pessoa física, sem CNPJ.</p>
+              <p class="small">O Contratado é pessoa física e utiliza “S.A.E Strategies” apenas como assinatura comercial (sem CNPJ).</p>
             </div>
           </div>
         </div>
@@ -550,15 +573,14 @@
         <div class="section-body">
           <p class="p">
             Considerando que (i) o CONTRATANTE deseja contratar serviços digitais para aprimorar suas operações e presença digital;
-            (ii) o CONTRATADO possui experiência em desenvolvimento web, automação e soluções com inteligência artificial;
+            (ii) o CONTRATADO possui experiência em desenvolvimento web, automação e soluções digitais; e
             (iii) as partes desejam estabelecer regras claras de escopo, entregas, prazos, pagamentos, confidencialidade,
             propriedade intelectual, proteção de dados e responsabilidades; resolvem firmar o presente Contrato.
           </p>
 
           <p class="p">
-            <span class="b">Contexto do serviço:</span> <span class="b">desenvolvimento de website profissional + automação de relatórios + aplicativo web/portal</span>
-            <br/>
-            <span class="b">Valor total:</span> <span class="b">R$ 6.000,00</span> •
+            <span class="b">Contexto do serviço:</span> <span class="b">automação de relatórios + aplicativo web/portal</span><br/>
+            <span class="b">Valor total:</span> <span class="b">R$ 3.700,00 + R$ 150,00/mes</span> •
             <span class="b">Duração:</span> <span class="b">30 dias</span>.
           </p>
         </div>
@@ -573,74 +595,17 @@
         <div class="section-body">
           <p class="p">
             3.1. O presente Contrato tem por objeto a prestação, pelo CONTRATADO, dos serviços digitais abaixo,
-            conforme opções e especificações escolhidas pelo CONTRATANTE, com entregas por marcos (“Milestones”),
-            padrões de qualidade e prazos, nos termos deste instrumento e de seus anexos.
+            com entregas por marcos (“Milestones”), padrões de qualidade e prazos, nos termos deste instrumento e de seus anexos.
           </p>
 
-          <p class="p b">3.2. Serviços ofertados (catálogo SAE):</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Serviço</th>
-                <th>Descrição</th>
-                <th>Preço (referência)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Website Institucional</td>
-                <td>Até 3 páginas profissionais</td>
-                <td>R$ 1.200,00</td>
-              </tr>
-              <tr>
-                <td>Website Profissional</td>
-                <td>Até 7 páginas, SEO avançado</td>
-                <td>R$ 2.500,00</td>
-              </tr>
-              <tr>
-                <td>Planilha Digital de Rotina</td>
-                <td>Automatizada e personalizada</td>
-                <td>R$ 600,00</td>
-              </tr>
-              <tr>
-                <td>Automação de Relatórios</td>
-                <td>Relatórios avançados automatizados</td>
-                <td>R$ 1.700,00</td>
-              </tr>
-              <tr>
-                <td>Aplicativo Web</td>
-                <td>Portal da Família personalizado</td>
-                <td>R$ 2.200,00</td>
-              </tr>
-              <tr>
-                <td>Identidade Visual Essencial</td>
-                <td>Cartão digital + paleta personalizada</td>
-                <td>R$ 300,00</td>
-              </tr>
-              <tr>
-                <td>Identidade Visual Completa</td>
-                <td>Cartão digital/impresso + templates sociais</td>
-                <td>R$ 500,00</td>
-              </tr>
-              <tr>
-                <td>Suporte Essencial</td>
-                <td>Manutenção básica mensal</td>
-                <td>R$ 150,00/mês</td>
-              </tr>
-              <tr>
-                <td>Suporte Avançado</td>
-                <td>Manutenção completa mensal</td>
-                <td>R$ 300,00/mês</td>
-              </tr>
-            </tbody>
-          </table>
+          <p class="p b">3.2. Serviços efetivamente contratados neste instrumento:</p>
+          <ul class="clean">
+            <li><span class="b">Automação de Relatórios</span> (relatórios avançados automatizados);</li>
+            <li><span class="b">Aplicativo Web</span> (Portal da Família personalizado);</li>
+            <li><span class="b">Suporte Avançado</span> (manutenção básica mensal), conforme Cláusula 5.3.</li>
+          </ul>
 
-          <p class="p">
-            3.3. <span class="b">Serviços efetivamente contratados neste instrumento:</span>
-            <span class="b">Website Profissional + Automação de Relatórios + Aplicativo Web + Suporte Essencial</span>
-          </p>
-
-          <p class="p b">3.4. Entregáveis e marcos (Milestones):</p>
+          <p class="p b">3.3. Entregáveis e marcos (Milestones):</p>
           <table>
             <thead>
               <tr>
@@ -654,32 +619,32 @@
               <tr>
                 <td>M1</td>
                 <td>Kickoff + levantamento de requisitos + plano de execução</td>
-                <td>5 dias úteis</td>
+                <td>Até 5 dias úteis</td>
                 <td>Validação do escopo por e-mail/WhatsApp</td>
               </tr>
               <tr>
                 <td>M2</td>
-                <td>Protótipo/estrutura + primeira entrega funcional</td>
-                <td>15 dias úteis</td>
+                <td>Protótipo/estrutura + entrega funcional intermediária</td>
+                <td>Até 15 dias úteis</td>
                 <td>Aprovação do layout/fluxo + ajustes</td>
               </tr>
               <tr>
                 <td>M3</td>
                 <td>Entrega final + publicação/handoff</td>
-                <td>30 dias úteis</td>
+                <td>Até 30 dias úteis</td>
                 <td>Checklist de entrega e homologação</td>
               </tr>
             </tbody>
           </table>
 
-          <p class="p b">3.5. Padrões de desempenho / SLA (quando aplicável):</p>
+          <p class="p b">3.4. Padrões de desempenho / SLA (quando aplicável):</p>
           <ul class="clean">
-            <li>Disponibilidade e performance dependem de hospedagem/infra do CONTRATANTE ou terceiro.</li>
-            <li>Tempo de resposta de suporte: até <span class="b">6</span> horas úteis.</li>
-            <li>Correções de bugs (garantia): conforme Cláusula 7.</li>
+            <li>Disponibilidade e performance dependem de hospedagem/infra do CONTRATANTE ou de terceiros.</li>
+            <li>Tempo de resposta de suporte: até <span class="b">1 (um) dia útil</span>.</li>
+            <li>Correções de bugs (garantia): conforme Cláusula 8.1.</li>
           </ul>
 
-          <p class="p b">3.6. Exclusões (fora do escopo), salvo aditivo:</p>
+          <p class="p b">3.5. Exclusões (fora do escopo), salvo aditivo:</p>
           <ul class="clean">
             <li>Compra de domínio, hospedagem, e-mails corporativos e ferramentas pagas (salvo se previsto em anexo);</li>
             <li>Conteúdo extenso (textos/fotos/vídeos) não fornecido pelo CONTRATANTE;</li>
@@ -697,8 +662,8 @@
         </div>
         <div class="section-body">
           <p class="p">
-            4.1. O presente Contrato entra em vigor na data de sua assinatura e terá vigência de <span class="b">[INSIRA PRAZO] *</span>,
-            iniciando-se em <span class="b">[DATA DE INÍCIO] *</span> e encerrando-se em <span class="b">[DATA DE TÉRMINO] *</span>,
+            4.1. O presente Contrato entra em vigor na data de sua assinatura e terá vigência de <span class="b">30 (trinta) dias</span>,
+            iniciando-se em <span class="b">[DATA DE INÍCIO]</span> e encerrando-se em <span class="b">[DATA DE TÉRMINO]</span>,
             podendo ser prorrogado por acordo escrito entre as partes.
           </p>
           <p class="p">
@@ -712,28 +677,26 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 5. PREÇO E FORMA DE PAGAMENTO</div>
-          <div class="section-hint">Valor total, parcelas, marcos, inadimplência e tributos</div>
+          <div class="section-hint">Valor, parcelas, mensalidade, tributos e inadimplência</div>
         </div>
         <div class="section-body">
           <p class="p">
-            5.1. O valor total pelos serviços contratados é de <span class="b">R$ 6.000,00</span>, em moeda corrente nacional (BRL).
+            5.1. O valor total pelos serviços contratados é de <span class="b">R$ 3.750,00 + R$ 150,00/mes</span>, em moeda corrente nacional (BRL).
           </p>
 
-          <p class="p b">5.2. Implantação (opções):</p>
+          <p class="p b">5.2. Implantação — forma acordada:</p>
           <ul class="clean">
-            <li><span class="b">À vista</span> com <span class="b">5% de desconto</span>; <span class="b">OU</span></li>
-            <li><span class="b">Parcelado em até 4x sem juros</span> via PIX, boleto ou cartão (quando disponível).</li>
-            <li>Caso seja credito tera uma taxa de <span class="b">4%</span></li>
+            <li><span class="b">Parcelado em até 3x sem juros</span> via <span class="b">boleto</span>  + <span class="b">PIX</span> (quando disponível).</li>
           </ul>
 
-          <p class="p b">5.3. Mensalidade (quando houver suporte):</p>
+          <p class="p b">5.3. Mensalidade de suporte (quando aplicável):</p>
           <ul class="clean">
             <li>Vencimento fixo todo dia <span class="b">10</span> do mês;</li>
-            <li>Formas aceitas: PIX, boleto ou cartão recorrente;</li>
-            <li>Planos: Essencial (R$ 150,00/mês) e Avançado (R$ 300,00/mês) — conforme contratado.</li>
+            <li>Forma aceita: <span class="b">PIX e Boleto</span>;</li>
+            <li>Plano: <span class="b">Suporte Essencial</span> (R$ 150,00/mês) <span class="small">— ajuste se for Avançado</span>.</li>
           </ul>
 
-          <p class="p b">5.4. Plano por marcos (exemplo — edite conforme seu projeto):</p>
+          <p class="p b">5.4. Plano por marcos (pagamento por entrega):</p>
           <table>
             <thead>
               <tr>
@@ -748,37 +711,31 @@
                 <td>M1</td>
                 <td>Assinatura do contrato + início (sinal)</td>
                 <td>R$ 1.500,00</td>
-                <td>5 dias</td>
+                <td></td>
               </tr>
               <tr>
                 <td>M2</td>
                 <td>Entrega parcial / validação intermediária</td>
                 <td>R$ 3.000,00</td>
-                <td>30 a 60 dias do projeto</td>
+                <td></td>
               </tr>
               <tr>
                 <td>M3</td>
                 <td>Entrega final / publicação</td>
                 <td>R$ 1.500,00</td>
-                <td>90 dias</td>
+                <td></td>
               </tr>
             </tbody>
           </table>
 
           <p class="p">
-            5.5. <span class="b">Inadimplência:</span> em caso de atraso no pagamento, incidirá multa moratória de <span class="b">2%</span>
-            sobre o valor devido, acrescida de juros de <span class="b">1% ao mês</span> (ou o máximo permitido em lei).
-            O CONTRATADO poderá suspender a execução até a regularização, sem prejuízo de prazos.
+            5.5. <span class="b">Inadimplência:</span> em caso de atraso, incidirá multa moratória de <span class="b">2%</span> sobre o valor devido,
+            acrescida de juros de <span class="b">1% ao mês</span> (ou o máximo permitido em lei). O CONTRATADO poderá suspender a execução até a regularização.
           </p>
 
           <p class="p">
-            5.6. <span class="b">Tributos:</span> por se tratar de prestação por <span class="b">Pessoa Física</span>, eventuais tributos
-            incidentes (quando aplicáveis) serão tratados conforme legislação e acordos operacionais entre as partes.
-            O CONTRATANTE reconhece que poderá haver retenções legais, se aplicável, devendo comunicar previamente ao CONTRATADO.
-          </p>
-
-          <p class="p small">
-            Observação prática: para pessoa física, normalmente não há emissão de NFS-e como PJ. Se o cliente exigir nota fiscal, considere aditivo/adequação futura.
+            5.6. <span class="b">Tributos:</span> por se tratar de prestação por <span class="b">Pessoa Física</span>, eventuais tributos incidentes
+            serão tratados conforme legislação e retenções aplicáveis, se houver, devendo o CONTRATANTE comunicar previamente ao CONTRATADO.
           </p>
         </div>
       </section>
@@ -794,18 +751,18 @@
           <ul class="clean">
             <li>Executar os serviços com zelo, técnica e padrões profissionais;</li>
             <li>Comunicar riscos, dependências e impedimentos com antecedência razoável;</li>
-            <li>Realizar entregas conforme marcos e registrar aprovações;</li>
+            <li>Registrar aprovações e mudanças de escopo;</li>
             <li>Manter confidencialidade e aplicar medidas razoáveis de segurança;</li>
             <li>Disponibilizar suporte/garantia conforme contratado.</li>
           </ul>
 
           <p class="p b">6.2. Obrigações do CONTRATANTE (Cliente):</p>
           <ul class="clean">
-            <li>Fornecer informações, acessos, materiais, logins e autorizações necessárias;</li>
-            <li>Garantir que possui direitos de uso de imagens, marcas, textos e demais materiais fornecidos;</li>
-            <li>Aprovar entregas ou solicitar ajustes em até <span class="b">5 dias úteis</span> (ou outro prazo acordado);</li>
+            <li>Fornecer informações, acessos e materiais necessários;</li>
+            <li>Garantir direitos de uso de materiais fornecidos;</li>
+            <li>Aprovar entregas ou solicitar ajustes em até <span class="b">5 dias úteis</span>;</li>
             <li>Efetuar pagamentos pontualmente;</li>
-            <li>Não realizar alterações técnicas sem alinhamento formal durante o projeto.</li>
+            <li>Não realizar alterações técnicas sem alinhamento formal.</li>
           </ul>
         </div>
       </section>
@@ -818,31 +775,21 @@
         </div>
         <div class="section-body">
           <p class="p">
-            7.1. <span class="b">Confidencialidade:</span> as partes obrigam-se a manter sigilo sobre informações técnicas,
-            comerciais e estratégicas obtidas em razão deste Contrato, por prazo mínimo de <span class="b">5 (cinco) anos</span>
-            após o término, inclusive sobre valores, processos e dados.
+            7.1. <span class="b">Confidencialidade:</span> as partes manterão sigilo por prazo mínimo de <span class="b">5 (cinco) anos</span> após o término.
           </p>
 
           <p class="p">
-            7.2. <span class="b">Propriedade Intelectual:</span> após a quitação integral, os entregáveis específicos produzidos
-            para o CONTRATANTE (ex.: layout final, páginas, automações customizadas) serão licenciados/cedidos ao CONTRATANTE
-            conforme <span class="b">[DEFINIR: cessão total OU licença de uso]</span>. Componentes genéricos, bibliotecas,
-            frameworks e know-how permanecem com o CONTRATADO.
+            7.2. <span class="b">Propriedade Intelectual:</span> após quitação integral, os entregáveis específicos serão concedidos ao CONTRATANTE
+            sob <span class="b">licença de uso</span>. Bibliotecas, frameworks e know-how permanecem com o CONTRATADO.
           </p>
 
           <p class="p">
-            7.3. <span class="b">LGPD:</span> se houver tratamento de dados pessoais, as partes comprometem-se a cumprir a Lei nº 13.709/2018,
-            adotando medidas de segurança, minimização de dados e acesso restrito. O CONTRATANTE será o <span class="b">Controlador</span>
-            e o CONTRATADO, quando aplicável, o <span class="b">Operador</span>, conforme definições da LGPD.
+            7.3. <span class="b">LGPD:</span> havendo tratamento de dados pessoais, o CONTRATANTE será Controlador e o CONTRATADO Operador, quando aplicável,
+            observando medidas de segurança e minimização.
           </p>
 
           <p class="p">
-            7.4. <span class="b">Marco Civil:</span> quando aplicável, as partes observarão a Lei nº 12.965/2014 quanto a registros,
-            uso de dados e conformidade em serviços digitais.
-          </p>
-
-          <p class="p">
-            7.5. <span class="b">Não concorrência (opcional):</span> [INSERIR SE APLICÁVEL], definindo prazo, território e escopo razoáveis.
+            7.4. <span class="b">Marco Civil:</span> quando aplicável, serão observadas regras de registros e uso de dados.
           </p>
         </div>
       </section>
@@ -851,29 +798,16 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 8. GARANTIAS E RESPONSABILIDADES</div>
-          <div class="section-hint">Garantia, limitação, indenização e força maior</div>
+          <div class="section-hint">Garantia e força maior</div>
         </div>
         <div class="section-body">
           <p class="p">
-            8.1. <span class="b">Garantia:</span> o CONTRATADO concede garantia de <span class="b">15 (quinze) dias</span> após a entrega final
-            para correção de bugs/erros diretamente relacionados ao escopo entregue, sem custo adicional.
+            8.1. <span class="b">Garantia:</span> 15 (quinze) dias após a entrega final para correção de bugs do escopo entregue.
           </p>
 
           <p class="p">
-            8.2. <span class="b">Limitação de responsabilidade:</span> exceto por dolo, fraude ou violação de confidencialidade,
-            a responsabilidade total do CONTRATADO fica limitada ao valor total efetivamente pago neste Contrato.
-            Não há responsabilidade por lucros cessantes indiretos, perda de oportunidade ou danos consequenciais.
-          </p>
-
-          <p class="p">
-            8.3. <span class="b">Indenização:</span> cada parte indenizará a outra por danos diretos comprovados decorrentes de sua culpa,
-            nos limites deste Contrato.
-          </p>
-
-          <p class="p">
-            8.4. <span class="b">Força maior:</span> nenhuma das partes responderá por atrasos/descumprimento decorrentes de eventos
-            imprevisíveis e inevitáveis, incluindo (sem limitar) pandemias, greves, quedas prolongadas de energia/internet,
-            ataques cibernéticos de terceiros, desastres naturais e atos governamentais.
+            8.2. <span class="b">Força maior:</span> nenhuma das partes responderá por eventos imprevisíveis e inevitáveis (pandemias, greves, quedas de energia,
+            falhas de terceiros, desastres naturais e atos governamentais).
           </p>
         </div>
       </section>
@@ -882,27 +816,26 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 9. RESOLUÇÃO, RESCISÃO E PENALIDADES</div>
-          <div class="section-hint">Quebra, aviso, multas e efeitos</div>
+          <div class="section-hint">Término, descumprimento e multa</div>
         </div>
         <div class="section-body">
           <p class="p">
-            9.1. O Contrato poderá ser rescindido por qualquer parte mediante aviso prévio de <span class="b">30 (trinta) dias</span>,
-            por escrito, salvo hipóteses de rescisão imediata por justa causa.
+            9.1. O presente contrato poderá ser rescindido nas seguintes hipóteses:
+          </p>
+          <ul class="clean">
+            <li>Término do prazo estipulado;</li>
+            <li>Infração de cláusula contratual ou legal por qualquer das partes;</li>
+            <li>Falência/recuperação judicial/extrajudicial ou liquidação do CONTRATANTE;</li>
+            <li>Superveniente incapacidade técnica ou econômica de qualquer das partes.</li>
+          </ul>
+
+          <p class="p">
+            9.2. <span class="b">Multa por descumprimento:</span> multa de <span class="b">50%</span> do valor total do contrato, conforme gravidade,
+            além de perdas e danos cabíveis, respeitada a legislação.
           </p>
 
           <p class="p">
-            9.2. Constitui justa causa: (i) inadimplência superior a <span class="b">15 dias</span> dias; (ii) violação de confidencialidade;
-            (iii) uso indevido de propriedade intelectual; (iv) descumprimento grave de obrigação essencial.
-          </p>
-
-          <p class="p">
-            9.3. <span class="b">Multa por descumprimento:</span> poderá ser aplicada multa entre <span class="b">10% e 50%</span> do valor total do contrato,
-            conforme gravidade e prejuízos, além de perdas e danos cabíveis, respeitada a legislação.
-          </p>
-
-          <p class="p">
-            9.4. Em caso de rescisão, o CONTRATADO fará a entrega do que estiver produzido até a data, desde que os pagamentos proporcionais
-            tenham sido quitados.
+            9.3. Em caso de rescisão, o CONTRATADO entregará o que estiver produzido até a data, desde que os pagamentos proporcionais estejam quitados.
           </p>
         </div>
       </section>
@@ -911,15 +844,12 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 10. FORO E LEGISLAÇÃO APLICÁVEL</div>
-          <div class="section-hint">Jurisdição e lei brasileira</div>
+          <div class="section-hint">Lei brasileira e foro</div>
         </div>
         <div class="section-body">
+          <p class="p">10.1. Este Contrato será regido pelas leis brasileiras.</p>
           <p class="p">
-            10.1. Este Contrato será regido pelas leis da República Federativa do Brasil.
-          </p>
-          <p class="p">
-            10.2. Fica eleito o <span class="b">Foro da Comarca de Fortaleza/CE</span>, com renúncia a qualquer outro, por mais privilegiado que seja,
-            para dirimir controvérsias oriundas deste Contrato.
+            10.2. Fica eleito o <span class="b">Foro da Comarca de Fortaleza/CE</span>, com renúncia a qualquer outro.
           </p>
         </div>
       </section>
@@ -928,28 +858,17 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 11. DISPOSIÇÕES GERAIS</div>
-          <div class="section-hint">Integração, nulidade, notificações e anticorrupção</div>
+          <div class="section-hint">Integração, aditivos, notificações e anticorrupção</div>
         </div>
         <div class="section-body">
+          <p class="p">11.1. Este Contrato representa o acordo integral entre as partes.</p>
+          <p class="p">11.2. Alterações somente por escrito (aditivo).</p>
+          <p class="p">11.3. Notificações por e-mail e/ou correspondência com comprovação.</p>
           <p class="p">
-            11.1. <span class="b">Integração:</span> este Contrato e seus anexos representam o acordo integral entre as partes.
+            11.4. <span class="b">Anticorrupção:</span> as partes declaram cumprir a Lei nº 12.846/2013.
           </p>
           <p class="p">
-            11.2. <span class="b">Alterações:</span> qualquer alteração somente terá validade se realizada por escrito (aditivo).
-          </p>
-          <p class="p">
-            11.3. <span class="b">Notificações:</span> serão válidas por e-mail e/ou correspondência com comprovação, para os contatos indicados na Cláusula 1.
-          </p>
-          <p class="p">
-            11.4. <span class="b">Anticorrupção:</span> as partes declaram cumprir a Lei nº 12.846/2013, abstendo-se de qualquer prática de corrupção,
-            pagamento indevido ou vantagem ilícita.
-          </p>
-          <p class="p">
-            11.5. <span class="b">Relação trabalhista:</span> este Contrato não gera vínculo empregatício, subordinação ou exclusividade,
-            sendo relação de prestação de serviços, com autonomia técnica do CONTRATADO.
-          </p>
-          <p class="p">
-            11.6. <span class="b">Nulidade parcial:</span> se qualquer cláusula for considerada inválida, as demais permanecerão em pleno vigor.
+            11.5. <span class="b">Relação trabalhista:</span> não há vínculo empregatício, subordinação ou exclusividade.
           </p>
         </div>
       </section>
@@ -958,7 +877,7 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 12. ANEXOS</div>
-          <div class="section-hint">Espaços para especificações e planos</div>
+          <div class="section-hint">Escopo, pagamento, SLA, LGPD</div>
         </div>
         <div class="section-body">
           <p class="p">
@@ -974,38 +893,38 @@
       <section class="section">
         <div class="section-head">
           <div class="section-title"><span class="dot"></span> 13. ASSINATURAS E TESTEMUNHAS</div>
-          <div class="section-hint">Assinatura física e digital (ICP-Brasil)</div>
+          <div class="section-hint">Assinatura física e digital</div>
         </div>
         <div class="section-body">
           <p class="p">
-            E por estarem justas e contratadas, as partes assinam o presente instrumento em 2 (duas) vias de igual teor,
-            juntamente com 2 (duas) testemunhas. As partes reconhecem a validade de assinatura digital, inclusive via plataformas
-            com certificado <span class="b">ICP-Brasil</span>, quando aplicável.
+            As partes assinam o presente instrumento em 2 (duas) vias de igual teor. Reconhece-se a validade de assinatura digital,
+            inclusive por plataformas com certificado <span class="b">ICP-Brasil</span>, quando aplicável.
           </p>
 
           <div class="signatures">
             <div class="sign-box">
               <div class="b">CONTRATANTE</div>
               <div class="sign-line">
-                Nome/Razão Social: CTI Centro De Tratamento ao Idoso<br/>
+                Nome/Razão Social: Rafaterapia Homecare e Treinamentos LTDA<br/>
                 Representante: Rafael Pereira dos Santos<br/>
                 CPF do representante: 021.875.755-78<br/>
                 Data: ____/____/______<br/>
-                Assinatura: ____________________________________
+                Assinatura: _______________________________________________
               </div>
             </div>
 
             <div class="sign-box">
               <div class="b">CONTRATADO — Pessoa Física</div>
               <div class="sign-line">
-                Nome: Eduardo Lima<br/>
+                Nome: Eduardo Lima Pimentel Lopes<br/>
                 CPF: 608.727.473-10<br/>
                 Data: ____/____/______<br/>
-                Assinatura: ____________________________________
+                Assinatura: _______________________________________________
               </div>
             </div>
           </div>
-
+        </div>
+      </section>
 
       <!-- 14. CHECKLIST -->
       <section class="section">
@@ -1015,14 +934,13 @@
         </div>
         <div class="section-body">
           <ul class="clean">
-            <li>[ ] Confirmar dados completos do CONTRATANTE (CNPJ, endereço, representante, CPF, estado civil).</li>
-            <li>[ ] Preencher dados completos do CONTRATADO (CPF, RG, endereço em Fortaleza/CE, e-mail e telefone).</li>
-            <li>[ ] Definir serviços efetivamente contratados e anexar escopo detalhado (ANEXO I).</li>
-            <li>[ ] Definir marcos, prazos e critérios de aceite (Cláusula 3.4 e ANEXO II).</li>
-            <li>[ ] Preencher valor total e forma de pagamento (Cláusula 5).</li>
-            <li>[ ] Definir se haverá suporte mensal e qual plano (Essencial/Avançado).</li>
-            <li>[ ] Validar regras de LGPD e responsabilidades (Cláusulas 7 e 8).</li>
-            <li>[ ] Colher assinaturas e dados das 2 testemunhas.</li>
+            <li>[ ] Confirmar dados do CONTRATANTE (CNPJ, endereço, representante, CPF/RG).</li>
+            <li>[ ] Confirmar dados do CONTRATADO (CPF, endereço Fortaleza/CE, e-mail e telefone).</li>
+            <li>[ ] Validar escopo e anexos (ANEXO I) + critérios de aceite.</li>
+            <li>[ ] Confirmar valores e cronograma de pagamento (ANEXO II).</li>
+            <li>[ ] Validar SLA e manutenção (ANEXO III).</li>
+            <li>[ ] Revisar LGPD e responsabilidades.</li>
+            <li>[ ] Assinaturas e (opcional) duas testemunhas.</li>
           </ul>
         </div>
       </section>
@@ -1030,8 +948,8 @@
     </main>
 
     <footer class="footer">
-      <p><b>S.A.E STRATEGIES</b> — Fortaleza/CE • Soluções Digitais Estratégicas</p>
-      <p>www.saestrategies.com • saestrategiescpf@gmail.com • (61) 98317-9051</p>
+      <p><b>S.A.E Strategies</b> (assinatura comercial) • Prestador Pessoa Física — Fortaleza/CE</p>
+      <p>saestrategiescpf@gmail.com • (85) 9183-8422</p>
     </footer>
   </div>
 
